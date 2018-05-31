@@ -21,7 +21,7 @@ router.post("/register", (req, res) => {
     if(err){
       JsonUtil.response(res,'200',err,"返回错误");
     }else{
-        if(isEmpty(success)){
+        if(StringUtil.isEmpty(success)){
           if (StringUtil.isEmpty(req.body.name)||StringUtil.isEmpty(req.body.password)) {
             JsonUtil.response(res,'200',{
                   "username": req.body.name,
