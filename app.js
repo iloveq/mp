@@ -5,13 +5,15 @@ const user = require('./router/user');
 const work = require('./router/work');
 const config = require('./config/params');
 const logger = require('morgan');
-
+const path = require('path')
 
 const db = mongooes.connect(config.mongodb);
 
 
 
 const app = express();
+app.use('/images',express.static('images'))
+
 //设置全局参数 'jwt-secret'
 app.set('jwt-secret', config.jwtsecret);
 app.use(bodyParser.json());
