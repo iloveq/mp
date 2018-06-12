@@ -7,7 +7,7 @@ const JsonUtil = require('../utils/JsonUtil');
 const fs = require('fs');
 const multer = require('multer');//接收图片
 const upload = multer({
-    dest: './uploads'
+    dest: './uploads' 
 });
 
 
