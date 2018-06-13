@@ -21,7 +21,7 @@ router.post('/upload', upload, function (req, res) {
         share: ""
     }, (err, success) => {
         if (err) {
-            JsonUtil.response(res, '200', err, "返回错误");
+            JsonUtil.response(res, '201', err, "返回错误");
         } else {
             JsonUtil.response(res, '200', success, "上传图片成功");
         }
