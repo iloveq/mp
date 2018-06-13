@@ -10,20 +10,23 @@ const upload = multer.single('image');
 
 
 //上传作品
-router.post('/upload', upload,function (req, res) {
-    
-        WorkModel.create({
-            username: req.body.name,
-            content: req.body.content,
-            imgurl: 'http://' + req.headers.host + '/images/' + req.file.filename
-        }, (err, success) => {
-            if (err) {
-                JsonUtil.response(res, '200', err, "返回错误");
-            } else {
-                JsonUtil.response(res, '200', success, "上传图片成功");
-            }
-        });
-  
+router.post('/upload', upload, function (req, res) {
+
+    WorkModel.create({
+        username: req.body.name,
+        content: req.body.content,
+        imgurl: 'http://' + req.headers.host + '/images/' + req.file.filename,
+        userId: req.body.userId,
+        like: "",
+        share: ""
+    }, (err, success) => {
+        if (err) {
+            JsonUtil.response(res, '200', err, "返回错误");
+        } else {
+            JsonUtil.response(res, '200', success, "上传图片成功");
+        }
+    });
+
 })
 
 
