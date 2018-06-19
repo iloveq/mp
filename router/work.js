@@ -64,7 +64,7 @@ router.post('/getCardList', function (req, res) {
             }
         }
 
-    })
+    }).sort({like:-1})
 })
 
 
