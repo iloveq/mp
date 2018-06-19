@@ -7,7 +7,7 @@ const TokenCheckUtil = require('../utils/TokenCheckUtil');
 
 
 
-//登陆 
+//登陆  name: string password: string token: string 
 router.post("/login", (req, res) => {
 
   UserModel.where({ name: req.body.name }).findOne((err, success) => {
@@ -47,6 +47,7 @@ router.post("/login", (req, res) => {
 
 
 //注册  code == '201' 已注册 
+//  name: "" age: "", sex: "", address: "",imgArr: "",phone: "",password: "",token: ""
 router.post("/register", (req, res) => {
   //name唯一     name 已注册？“已注册”：“creat user”;
   UserModel.where({ name: req.body.name }).findOne((err, success) => {
