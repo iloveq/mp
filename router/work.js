@@ -35,14 +35,14 @@ router.post('/upload', upload, function (req, res) {
 router.post('/getWorkList', function (req, res) {
     WorkModel.where({ username: req.body.name }).find((err, success) => {
         if (err) {
-            JsonUtil.response(res, '200', err, "返回错误");
+            JsonUtil.response(res, '201', err, "返回错误");
         } else {
             if (!StringUtil.isEmpty(success)) {
                 console.log(success);
                 JsonUtil.response(res, '200',success, "返回成功");
             } else {
                 console.log("e"+success);
-                JsonUtil.response(res, '200', "数据为空");
+                JsonUtil.response(res, '201',success, "数据为空");
             }
         }
 
