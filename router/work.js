@@ -31,7 +31,7 @@ router.post('/upload', upload, function (req, res) {
 
 })
 
-//获取我的作品列表 page: 0 ~ n  name:string
+//获取我的作品列表 page: 0 ~ n  name:string .skip(2*req.body.page).limit(2)
 router.post('/getWorkList', function (req, res) {
     WorkModel.where({ username: req.body.name }).find((err, success) => {
         if (err) {
@@ -46,7 +46,7 @@ router.post('/getWorkList', function (req, res) {
             }
         }
 
-    }).skip(2*req.body.page).limit(2)
+    })
 })
 
 
