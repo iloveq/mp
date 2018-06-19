@@ -39,10 +39,28 @@ router.post('/getWorkList', function (req, res) {
         } else {
             if (!StringUtil.isEmpty(success)) {
                 console.log(success);
-                JsonUtil.response(res, '200',success, "返回成功");
+                JsonUtil.response(res, '200', success, "返回成功");
             } else {
-                console.log("e"+success);
-                JsonUtil.response(res, '201',success, "数据为空");
+                console.log("e" + success);
+                JsonUtil.response(res, '201', success, "数据为空");
+            }
+        }
+
+    })
+})
+
+//推荐列表
+router.post('/getCardList', function (req, res) {
+    WorkModel.where({ 'like': { $gte: StringUtil.isEmpty(req.body.max) ? 100 : req.body.max } }).find((err, success) => {
+        if (err) {
+            JsonUtil.response(res, '201', err, "返回错误");
+        } else {
+            if (!StringUtil.isEmpty(success)) {
+                console.log(success);
+                JsonUtil.response(res, '200', success, "返回成功");
+            } else {
+                console.log("e" + success);
+                JsonUtil.response(res, '201', success, "数据为空");
             }
         }
 
