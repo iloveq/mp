@@ -17,8 +17,8 @@ router.post('/upload', upload, function (req, res) {
         content: req.body.content,
         imgurl: 'http://' + req.headers.host + '/images/' + req.file.filename,
         userId: req.body.userId,
-        like: "0",
-        share: "0",
+        like: 0,
+        share: 0,
         likeContract: []
     }, (err, success) => {
         if (err) {
