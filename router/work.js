@@ -39,8 +39,22 @@ router.post('/getWorkList', function (req, res) {
             JsonUtil.response(res, '201', err, "返回错误");
         } else {
             if (!StringUtil.isEmpty(success)) {
-                console.log(success);
-                JsonUtil.response(res, '200', success, "返回成功");
+                let arr = new Array();
+                success.forEach(function (value, index, array) {
+                    let isLike = StringUtil.isInArray(value.likeContract, req.body.name);
+                    let newObj = {
+                        _id: value._id,
+                        username: value.username,
+                        content: value.content,
+                        imgurl: value.imgurl,
+                        like: value.like,
+                        share: value.share,
+                        isLike: isLike
+                    }
+                    arr.push(newObj)
+                })
+                console.log(arr);
+                JsonUtil.response(res, '200', arr, "返回成功");
             } else {
                 console.log("e" + success);
                 JsonUtil.response(res, '201', success, "数据为空");
@@ -57,8 +71,23 @@ router.post('/getCardList', function (req, res) {
             JsonUtil.response(res, '201', err, "返回错误");
         } else {
             if (!StringUtil.isEmpty(success)) {
-                console.log(success);
-                JsonUtil.response(res, '200', success, "返回成功");
+                let arr = new Array();
+                success.forEach(function (value, index, array) {
+                    let isLike = StringUtil.isInArray(value.likeContract, req.body.name);
+                    let newObj = {
+                        _id: value._id,
+                        username: value.username,
+                        content: value.content,
+                        imgurl: value.imgurl,
+                        like: value.like,
+                        share: value.share,
+                        isLike: isLike
+                    }
+                    arr.push(newObj)
+                })
+
+                console.log(arr);
+                JsonUtil.response(res, '200', arr, "返回成功");
             } else {
                 console.log("e" + success);
                 JsonUtil.response(res, '201', success, "数据为空");
