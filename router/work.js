@@ -18,7 +18,8 @@ router.post('/upload', upload, function (req, res) {
         imgurl: 'http://' + req.headers.host + '/images/' + req.file.filename,
         userId: req.body.userId,
         like: "0",
-        share: "0"
+        share: "0",
+        likeContract: []
     }, (err, success) => {
         if (err) {
             console.log(err);
@@ -64,8 +65,37 @@ router.post('/getCardList', function (req, res) {
             }
         }
 
-    }).sort({like:-1})
+    }).sort({ like: -1 })
 })
+
+
+//点赞/取消 1/0  type:1/0 username:string workId:string
+router.post('/like', function (req, res) {
+    if (req.body.type === "1") {
+        //点赞
+        console.log("点赞");
+        WorkModel.update({ _id: req.body.workId }, { $addToSet: { likeContract: req.body.username }, $inc: { like: 1 } }, (err, success) => {
+            if (err) {
+                JsonUtil.response(res, '201', err, "点赞失败");
+            } else {
+                console.log(success);
+                JsonUtil.response(res, '200', success, "点赞成功");
+            }
+        });
+    } else {
+        //取消
+        console.log("取消");
+        WorkModel.update({ _id: req.body.workId }, { $pull: { likeContract: req.body.username }, $inc: { like: -1 } }, (err, success) => {
+            if (err) {
+                JsonUtil.response(res, '201', err, "取消失败");
+            } else {
+                console.log(success);
+                JsonUtil.response(res, '200', success, "取消成功");
+            }
+        });
+    }
+})
+
 
 
 
