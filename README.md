@@ -13,9 +13,25 @@ npm run dev
 
 # build for production with minification
 npm run build
-功能：登陆、注册、上传、点赞、获取推荐/我的作品列表
+
 ```
-使用 jwt 校验 token ,  morgan 做 log 输出,
+##### 功能：
+
+    1：登陆;
+    2：注册;
+    3：上传;
+    4：点赞;
+    5：获取推荐/我的作品列表;
+    6：token校验;
+    
+##### middleware使用:
+
+1: jsonwebtoken 用 jwt 校验 token ; 
+2: morgan 做 log 输出 ;
+3: body-parser 解析请求信息 ;
+4：multer 上传 form 封装 ;
+
+##### package.json:
 ```
     "body-parser": "^1.18.2",
     "element-ui": "^2.2.1",
